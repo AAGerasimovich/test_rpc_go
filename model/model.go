@@ -33,7 +33,7 @@ type Args struct {
 
 func (t *Model) Set(args *Args, reply *Reply) error {
 
-	db := conn("root", "38")
+	db := conn("user", "password") //enter your username and password
 	defer db.Close()
 	args.UUID = uuid()
 	_, err := db.Exec("INSERT INTO users VALUES('" + args.Name + "', '" + args.UUID + "', NOW())")
@@ -47,7 +47,7 @@ func (t *Model) Set(args *Args, reply *Reply) error {
 }
 
 func (t *Model) Get(args *Args, reply *Reply) error {
-	db := conn("root", "38")
+	db := conn("user", "password") //enter your username and password
 	defer db.Close()
 	rows, err := db.Query("SELECT * FROM users WHERE Name = '" + args.Name + "'")
 	if err != nil {
@@ -72,7 +72,7 @@ func (t *Model) Get(args *Args, reply *Reply) error {
 }
 
 func (t *Model) Update(args *Args, reply *Reply) error {
-	db := conn("root", "38")
+	db := conn("user", "password") //enter your username and password
 	defer db.Close()
 	_, err := db.Exec("UPDATE users SET Name = '" + args.Name + "' WHERE UUID = '" + args.UUID + "'")
 	if err != nil {
